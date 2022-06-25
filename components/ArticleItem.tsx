@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FC } from "react";
 import Image from "next/image";
-import noImage from "../public/no-image.svg";
+import noImage from "../assets/no-image.svg";
 import moment from "moment";
 import { CurrencyEuroIcon } from "@heroicons/react/outline";
 import { ApiResponseProps } from "@customTypes/type";
