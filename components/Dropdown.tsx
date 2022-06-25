@@ -1,55 +1,60 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { FC, Fragment, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronDownIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon } from "@heroicons/react/solid";
+import { OptionContextType } from "@customTypes/type";
+import { OptionContext } from "contexts/Page";
 
 const filterOptions = [
     {
+        label: "emailed",
         title: "Most Emailed",
         description: "The most emailed articles on NYTimes.com",
-        current: true,
     },
     {
+        label: "shared",
         title: "Most Shared",
         description: "The most shared articles on NYTimes.com",
-        current: false,
     },
     {
+        label: "viewed",
         title: "Most Viewed",
         description: "The most viewed articles on NYTimes.com",
-        current: false,
     },
 ];
 
-function classNames(...classes : string[]) {
+function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
 }
 
-const Dropdown: FC = () => {
+const Dropdown = () => {
+    const { option, setOption } = useContext(OptionContext) as OptionContextType;
     const [selected, setSelected] = useState(filterOptions[0]);
 
+    const onChangeHandler = (item: any) => {
+        setSelected(item);
+        setOption(item.label);
+        console.log(item.label);
+    };
+
     return (
-        <Listbox value={selected} onChange={setSelected}>
+        <Listbox value={selected} onChange={onChangeHandler}>
             {({ open }) => (
                 <>
                     <Listbox.Label className="sr-only">
-                        Change published status
+                        Change filter option
                     </Listbox.Label>
                     <div className="relative ">
-                        <div className="flex shadow-sm rounded-md divide-x divide-indigo-600 justify-end">
-                            <div className="relative z-0 inline-flex shadow-sm rounded-md divide-x divide-indigo-600">
-                                <div className="relative inline-flex items-center bg-indigo-500 py-2 pl-3 pr-4 border border-transparent rounded-l-md shadow-sm text-white">
-                                    <CheckIcon
-                                        className="h-5 w-5"
-                                        aria-hidden="true"
-                                    />
+                        <div className="flex rounded-md divide-x divide-sky-600 justify-end">
+                            <div className="relative z-0 inline-flex shadow-sm rounded-md divide-x divide-sky-600">
+                                <div className="relative inline-flex items-center bg-sky-500 py-2 pl-3 pr-4 border border-transparent rounded-l-md shadow-sm text-white">
                                     <p className="ml-2.5 text-sm font-medium">
                                         {selected.title}
                                     </p>
                                 </div>
-                                <Listbox.Button className="relative inline-flex items-center bg-indigo-500 p-2 rounded-l-none rounded-r-md text-sm font-medium text-white hover:bg-indigo-600 focus:outline-none focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">
+                                <Listbox.Button className="relative inline-flex items-center bg-sky-500 p-2 rounded-l-none rounded-r-md text-sm font-medium text-white hover:bg-sky-600 focus:outline-none focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-sky-500">
                                     <span className="sr-only">
-                                        Change published status
+                                        Change filter option
                                     </span>
                                     <ChevronDownIcon
                                         className="h-5 w-5 text-white"
@@ -73,7 +78,7 @@ const Dropdown: FC = () => {
                                         className={({ active }) =>
                                             classNames(
                                                 active
-                                                    ? "text-white bg-indigo-500"
+                                                    ? "text-white bg-sky-500"
                                                     : "text-gray-900",
                                                 "cursor-default select-none relative p-4 text-sm"
                                             )
@@ -97,14 +102,9 @@ const Dropdown: FC = () => {
                                                             className={
                                                                 active
                                                                     ? "text-white"
-                                                                    : "text-indigo-500"
+                                                                    : "text-sky-500"
                                                             }
-                                                        >
-                                                            <CheckIcon
-                                                                className="h-5 w-5"
-                                                                aria-hidden="true"
-                                                            />
-                                                        </span>
+                                                        ></span>
                                                     ) : null}
                                                 </div>
                                                 <p
@@ -128,6 +128,6 @@ const Dropdown: FC = () => {
             )}
         </Listbox>
     );
-}
+};
 
 export default Dropdown;

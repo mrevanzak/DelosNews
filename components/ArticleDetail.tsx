@@ -1,18 +1,16 @@
-import Link from "next/link";
 import { FC } from "react";
+import Link from "next/link";
 
-type PostMetaTitleProps = {
+export type ArticleDetailProps = {
     category: string;
     date: string;
     title: string;
-    center?: boolean;
 };
 
-const PostMetaTitle: FC<PostMetaTitleProps> = ({
+const ArticleDetail: FC<ArticleDetailProps> = ({
     category,
-    title,
     date,
-    center,
+    title,
 }) => {
     return (
         <>
@@ -21,7 +19,7 @@ const PostMetaTitle: FC<PostMetaTitleProps> = ({
                 <span>&bull;</span>
                 <div>{date}</div>
             </div>
-            <h2 className={`text-2xl mt-4 ${center ? "text-center" : ""}`}>
+            <h2 className={'text-2xl mt-4'}>
                 <Link href="/detail">
                     <a>{title}</a>
                 </Link>
@@ -30,4 +28,4 @@ const PostMetaTitle: FC<PostMetaTitleProps> = ({
     );
 };
 
-export default PostMetaTitle;
+export default ArticleDetail;

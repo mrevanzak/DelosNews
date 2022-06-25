@@ -4,16 +4,7 @@ import Container from "components/Container";
 import Image from "next/image";
 import logo from "../public/logo.png";
 
-const Navbar: FC = () => {
-    const [dropdown, setDropdown] = useState(false);
-    const [offcavnas, setOffcanvas] = useState(false);
-    const [search, setSearch] = useState(false);
-    const dropdownList = [
-        { text: "Internet", href: "/posts" },
-        { text: "Books", href: "/posts" },
-        { text: "Open Source", href: "/posts" },
-    ];
-
+const Navbar = () => {
     return (
         <nav className="py-10">
             <Container>
