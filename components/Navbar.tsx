@@ -1,10 +1,13 @@
 import Link from "next/link";
-import { FC, useState } from "react";
 import Container from "components/Container";
 import Image from "next/image";
 import logo from "../assets/logo.png";
+import { useContext } from "react";
+import { UserContext } from "contexts";
+import { UserContextType } from "@customTypes/type";
 
 const Navbar = () => {
+    const { user } = useContext(UserContext) as UserContextType
     return (
         <nav className="py-10">
             <Container>

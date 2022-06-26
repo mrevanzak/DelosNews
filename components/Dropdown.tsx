@@ -3,7 +3,8 @@ import { Fragment, useContext, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { OptionContextType } from "@customTypes/type";
-import { OptionContext } from "contexts/Page";
+import { OptionContext } from "contexts";
+import { mutate } from "swr";
 
 const filterOptions = [
     {
@@ -28,13 +29,12 @@ function classNames(...classes: string[]) {
 }
 
 const Dropdown = () => {
-    const { option, setOption } = useContext(OptionContext) as OptionContextType;
+    const { setOption } = useContext(OptionContext) as OptionContextType;
     const [selected, setSelected] = useState(filterOptions[0]);
 
     const onChangeHandler = (item: any) => {
         setSelected(item);
         setOption(item.label);
-        console.log(item.label);
     };
 
     return (

@@ -3,7 +3,7 @@ import useArticles from "pages/api/articles";
 import Loading from "./Loading";
 import { useContext } from "react";
 import { ApiResponseProps, OptionContextType } from "@customTypes/type";
-import { OptionContext } from "contexts/Page";
+import { OptionContext } from "contexts";
 
 const ArticleList = () => {
     const { option } = useContext(OptionContext) as OptionContextType;

@@ -1,8 +1,47 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import { useEffect, useState } from "react";
+import { ArticleType, UserType } from "@customTypes/type";
+import { ArticleContext, UserContext } from "contexts";
 
 function MyApp({ Component, pageProps }: AppProps) {
-    return <Component {...pageProps} />;
+    const username = [
+        "Silver Rain",
+        "Kim Kura",
+        "Hyem",
+        "Jigumina",
+        "Chaestival",
+        "Ssamu",
+        "Minju",
+        "Nabuki Yako",
+        "Hitomi",
+        "Glassy",
+        "Eugene",
+        "Vicky Jang",
+    ];
+    const randomUsername =
+        username[Math.floor(Math.random() * username.length)];
+
+    const [article, setArticle] = useState<ArticleType>();
+    const [user, setUser] = useState<UserType>({
+        name: randomUsername,
+        owned: [],
+    });
+
+    useEffect(() => {
+        const userStorage = localStorage.getItem("user");
+        !userStorage
+            ? localStorage.setItem("user", JSON.stringify(user))
+            : setUser({ name: JSON.parse(userStorage).name, owned: [] });
+    }, []);
+
+    return (
+        <UserContext.Provider value={{ user, setUser }}>
+            <ArticleContext.Provider value={{ article, setArticle }}>
+                <Component {...pageProps} />
+            </ArticleContext.Provider>
+        </UserContext.Provider>
+    );
 }
 
 export default MyApp;

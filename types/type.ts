@@ -41,3 +41,27 @@ export type OptionContextType = {
     option: Option;
     setOption: (option: Option) => void;
 };
+
+export type ArticleType = {
+    image?: string;
+    title: string;
+    author: string;
+    abstract: string;
+    date: string;
+    price: string;
+};
+
+export type ArticleContextType = {
+    article: ArticleType | undefined;
+    setArticle: (article: ArticleType) => void;
+};
+
+export type UserType = {
+    name: string;
+    owned: ApiResponseProps[];
+}
+
+export type UserContextType = {
+    user: UserType;
+    setUser: (user: UserType) => void;
+}
