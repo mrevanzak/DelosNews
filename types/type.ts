@@ -48,17 +48,20 @@ export type ArticleType = {
     author: string;
     abstract: string;
     date: string;
-    price: string;
+    price: number;
 };
 
 export type ArticleContextType = {
-    article: ArticleType | undefined;
-    setArticle: (article: ArticleType) => void;
+    article: ApiResponseProps & {
+price: number;
+    } | undefined;
+    setArticle: (article: ApiResponseProps & {price: number}) => void;
 };
 
 export type UserType = {
     name: string;
     owned: ApiResponseProps[];
+    balance: number;
 }
 
 export type UserContextType = {

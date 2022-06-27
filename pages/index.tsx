@@ -1,14 +1,17 @@
-import { FC, useState } from "react";
+import { FC, useContext, useState } from "react";
 import Head from "next/head";
 import Container from "@components/Container";
 import Layout from "@components/Layout";
 import ArticleList from "@components/ArticlesList";
 import Dropdown from "@components/Dropdown";
-import { OptionContext } from "contexts";
-import { Option } from "@customTypes/type";
+import { OptionContext, UserContext } from "contexts";
+import { Option, UserContextType } from "@customTypes/type";
 
 const Home: FC = () => {
     const [option, setOption] = useState<Option>("emailed");
+    const { user } = useContext(UserContext) as UserContextType;
+
+    console.log(user);
     return (
         <Layout>
             <Head>

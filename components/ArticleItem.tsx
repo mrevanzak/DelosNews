@@ -4,8 +4,8 @@ import Image from "next/image";
 import noImage from "../assets/noImage.svg";
 import moment from "moment";
 import { CurrencyEuroIcon } from "@heroicons/react/outline";
-import { ApiResponseProps, ArticleContextType, UserContextType } from "@customTypes/type";
-import { ArticleContext, UserContext } from "contexts";
+import { ApiResponseProps, ArticleContextType } from "@customTypes/type";
+import { ArticleContext } from "contexts";
 
 type ArticleItemProps = {
     data: ApiResponseProps;
@@ -14,30 +14,14 @@ type ArticleItemProps = {
 const ArticleItem: FC<ArticleItemProps> = ({ data }) => {
     const now = moment().format("YYYY-MM-DD");
     const diff = moment(now).diff(moment(data.published_date), "days");
-    const price = diff <= 1 ? "50.000" : diff <= 7 ? "20.000" : "free";
-    const { setArticle } = useContext(
-        ArticleContext
-    ) as ArticleContextType;
-    const { user, setUser } = useContext(UserContext) as UserContextType;
+    const price = diff <= 1 ? 50000 : diff <= 7 ? 20000 : 0;
+    const { setArticle } = useContext(ArticleContext) as ArticleContextType;
 
     const onClickHandler = () => {
         setArticle({
-            image: data.media[0]
-                ? data.media[0]["media-metadata"][2].url
-                : undefined,
-            title: data.title,
-            author: data.byline,
-            abstract: data.abstract,
-            date: data.published_date,
+            ...data,
             price: price,
         });
-        if (user) {
-            setUser({
-                ...user,
-                owned: [...user.owned, data],
-            });
-            localStorage.setItem("user", JSON.stringify(user));
-        }
     };
 
     return (
@@ -56,8 +40,9 @@ const ArticleItem: FC<ArticleItemProps> = ({ data }) => {
                     />
                     <div className="absolute bottom-1 rounded-b-3xl px-2 pb-4 xs:pt-10 md:pt-20 bg-gradient-to-b from-transparent to-zinc-900 w-full">
                         <h2
-                            className={"lg:text-lg md:text-sm mb-2 text-center"}
-                        >
+                            className={
+                                "lg:text-lg md:text-sm mb-2 text-center"
+                            }>
                             {data.title}
                         </h2>
                         <div className="lg:text-sm md:text-xs text-gray-200 flex justify-center gap-2">
@@ -65,7 +50,11 @@ const ArticleItem: FC<ArticleItemProps> = ({ data }) => {
                             <span>&bull;</span>
                             <p className="inline-flex items-center">
                                 <CurrencyEuroIcon className="h-5 w-5 inline pr-0.5" />
-                                {price}
+                                {price === 50000
+                                    ? "50.000"
+                                    : price === 20000
+                                    ? "20.000"
+                                    : "free"}
                             </p>
                         </div>
                     </div>
