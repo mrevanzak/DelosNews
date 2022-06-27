@@ -16,7 +16,7 @@ const Navbar = () => {
                     <div className="lg:w-2/12 w-6/12">
                         <Link href="/">
                             <a className="flex items-center justify-center lg:justify-start">
-                                <Image src={ logo } />
+                                <Image src={logo} />
                             </a>
                         </Link>
                     </div>

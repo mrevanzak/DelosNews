@@ -18,8 +18,7 @@ const Home: FC = () => {
                 <title>Home &mdash; DelosNews</title>
             </Head>
             <OptionContext.Provider
-                value={{ option: option, setOption: setOption }}
-            >
+                value={{ option: option, setOption: setOption }}>
                 <Container>
                     <Dropdown />
                     <ArticleList />

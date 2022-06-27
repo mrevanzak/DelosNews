@@ -19,6 +19,6 @@ const ArticleList = () => {
             )}
         </div>
     );
-}
+};
 
 export default ArticleList;

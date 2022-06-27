@@ -69,10 +69,9 @@ const Dropdown = () => {
                             as={Fragment}
                             leave="transition ease-in duration-100"
                             leaveFrom="opacity-100"
-                            leaveTo="opacity-0"
-                        >
+                            leaveTo="opacity-0">
                             <Listbox.Options className="origin-top-right absolute z-10 right-0 mt-2 w-72 rounded-md shadow-lg overflow-hidden bg-white divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                {filterOptions.map((option) => (
+                                {filterOptions.map(option => (
                                     <Listbox.Option
                                         key={option.title}
                                         className={({ active }) =>
@@ -80,11 +79,10 @@ const Dropdown = () => {
                                                 active
                                                     ? "text-white bg-sky-500"
                                                     : "text-gray-900",
-                                                "cursor-default select-none relative p-4 text-sm"
+                                                "cursor-default select-none relative p-4 text-sm",
                                             )
                                         }
-                                        value={option}
-                                    >
+                                        value={option}>
                                         {({ selected, active }) => (
                                             <div className="flex flex-col">
                                                 <div className="flex justify-between">
@@ -93,8 +91,7 @@ const Dropdown = () => {
                                                             selected
                                                                 ? "font-semibold"
                                                                 : "font-normal"
-                                                        }
-                                                    >
+                                                        }>
                                                         {option.title}
                                                     </p>
                                                     {selected ? (
@@ -103,8 +100,7 @@ const Dropdown = () => {
                                                                 active
                                                                     ? "text-white"
                                                                     : "text-sky-500"
-                                                            }
-                                                        ></span>
+                                                            }></span>
                                                     ) : null}
                                                 </div>
                                                 <p
@@ -112,9 +108,8 @@ const Dropdown = () => {
                                                         active
                                                             ? "text-indigo-200"
                                                             : "text-gray-500",
-                                                        "mt-2"
-                                                    )}
-                                                >
+                                                        "mt-2",
+                                                    )}>
                                                     {option.description}
                                                 </p>
                                             </div>

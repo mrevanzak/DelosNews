@@ -42,29 +42,22 @@ export type OptionContextType = {
     setOption: (option: Option) => void;
 };
 
-export type ArticleType = {
-    image?: string;
-    title: string;
-    author: string;
-    abstract: string;
-    date: string;
-    price: number;
-};
-
 export type ArticleContextType = {
-    article: ApiResponseProps & {
-price: number;
-    } | undefined;
-    setArticle: (article: ApiResponseProps & {price: number}) => void;
+    article:
+        | (ApiResponseProps & {
+              price: number;
+          })
+        | undefined;
+    setArticle: (article: ApiResponseProps & { price: number }) => void;
 };
 
 export type UserType = {
     name: string;
     owned: ApiResponseProps[];
     balance: number;
-}
+};
 
 export type UserContextType = {
     user: UserType;
     setUser: (user: UserType) => void;
-}
+};

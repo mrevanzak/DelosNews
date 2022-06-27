@@ -1,11 +1,13 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
-import { ArticleType, UserType } from "@customTypes/type";
+import { ApiResponseProps, UserType } from "@customTypes/type";
 import { ArticleContext, UserContext } from "contexts";
 
 function MyApp({ Component, pageProps }: AppProps) {
-    const [article, setArticle] = useState<ArticleType>();
+    const [article, setArticle] = useState<
+        ApiResponseProps & { price: number }
+    >();
     const [user, setUser] = useState<UserType>({
         name: "",
         owned: [],
@@ -39,7 +41,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                       name: randomUsername,
                       owned: [],
                       balance: 100000,
-                  })
+                  }),
               );
     }, []);
 

@@ -1,11 +1,11 @@
-import Container from "@components/Container"
-import Layout from "@components/Layout"
-import { UserContextType } from "@customTypes/type"
-import { UserContext } from "contexts"
-import Head from "next/head"
-import Image from "next/image"
-import Link from "next/link"
-import { useContext } from "react"
+import Container from "@components/Container";
+import Layout from "@components/Layout";
+import { UserContextType } from "@customTypes/type";
+import { UserContext } from "contexts";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import { useContext } from "react";
 import noImage from "../assets/noImage.svg";
 
 function classNames(...classes: string[]) {
@@ -13,7 +13,7 @@ function classNames(...classes: string[]) {
 }
 
 const User = () => {
-    const { user } = useContext(UserContext) as UserContextType
+    const { user } = useContext(UserContext) as UserContextType;
     return (
         <Layout>
             <Head>
@@ -92,6 +92,6 @@ const User = () => {
             </Container>
         </Layout>
     );
-}
+};
 
-export default User
+export default User;
