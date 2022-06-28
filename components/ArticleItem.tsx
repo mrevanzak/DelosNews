@@ -33,7 +33,7 @@ const ArticleItem: FC<ArticleItemProps> = ({ data }) => {
                         height={293}
                         src={
                             data.media[0]
-                                ? data.media[0]["media-metadata"][2].url
+                                ? data.media[0]["media-metadata"][2]!.url
                                 : noImage
                         }
                         className="w-full rounded-3xl mb-4"

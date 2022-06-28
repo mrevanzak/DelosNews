@@ -6,9 +6,11 @@ import ArticleList from "@components/ArticlesList";
 import Dropdown from "@components/Dropdown";
 import { OptionContext } from "contexts";
 import { Option } from "@customTypes/type";
+import Search from "@components/Search";
 
 const Home: FC = () => {
     const [option, setOption] = useState<Option>("emailed");
+    const [search, setSearch] = useState("");
 
     return (
         <Layout>
@@ -18,8 +20,11 @@ const Home: FC = () => {
             <OptionContext.Provider
                 value={{ option: option, setOption: setOption }}>
                 <Container>
-                    <Dropdown />
-                    <ArticleList />
+                    <div className="flex">
+                        <Search search={search} setSearch={setSearch} />
+                        <Dropdown />
+                    </div>
+                    <ArticleList search={search} />
                 </Container>
             </OptionContext.Provider>
         </Layout>

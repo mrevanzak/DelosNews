@@ -1,10 +1,8 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useContext, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { OptionContextType } from "@customTypes/type";
 import { OptionContext } from "contexts";
-import { mutate } from "swr";
 
 const filterOptions = [
     {
@@ -49,7 +47,7 @@ const Dropdown = () => {
                             <div className="relative z-0 inline-flex shadow-sm rounded-md divide-x divide-sky-600">
                                 <div className="relative inline-flex items-center bg-sky-500 py-2 pl-3 pr-4 border border-transparent rounded-l-md shadow-sm text-white">
                                     <p className="ml-2.5 text-sm font-medium">
-                                        {selected.title}
+                                        {selected!.title}
                                     </p>
                                 </div>
                                 <Listbox.Button className="relative inline-flex items-center bg-sky-500 p-2 rounded-l-none rounded-r-md text-sm font-medium text-white hover:bg-sky-600 focus:outline-none focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-sky-500">

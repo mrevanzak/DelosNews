@@ -19,21 +19,19 @@ const Detail = () => {
     const router = useRouter();
 
     const order = () => {
-        if (user && article) {
-            if (user.balance >= article.price) {
-                if (!user.owned.some(item => item.id === article.id)) {
-                    setUser({
-                        ...user,
-                        owned: [...user.owned, article],
-                        balance: user.balance - article.price,
-                    });
-                    localStorage.setItem("user", JSON.stringify(user));
-                    return toast.success("Article added to your collection");
-                }
-                return toast.info("Article already in your collection");
-            }
-            return toast.error("You don't have enough balance");
+        if (article) {
+            if (user.name.length < 1) return toast.error("Please login first");
+            if (user.balance < article.price) return toast.error("You don't have enough balance");
+            if (user.owned.some(item => item.id === article.id)) return toast.info("Article already in your collection");
+            setUser({
+                ...user,
+                owned: [...user.owned, article],
+                balance: user.balance - article.price,
+            });
+            localStorage.setItem("user", JSON.stringify(user));
+            return toast.success("Article added to your collection");
         }
+        return;
     };
 
     const onOrderClick = async () => {
@@ -73,7 +71,7 @@ const Detail = () => {
                             height={439.5}
                             src={
                                 article.media[0]
-                                    ? article.media[0]["media-metadata"][2].url
+                                    ? article.media[0]["media-metadata"][2]!.url
                                     : noImage
                             }
                             className="w-full rounded-lg"

@@ -35,7 +35,7 @@ const CollectionList = () => {
                             <Image
                                 src={
                                     item.media[0]
-                                        ? item.media[0]["media-metadata"][2].url
+                                        ? item.media[0]["media-metadata"][2]!.url
                                         : noImage
                                 }
                                 width={210}
