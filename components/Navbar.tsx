@@ -42,7 +42,7 @@ const Navbar = () => {
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div>
+                                            <div className="flex items-center">
                                                 <Image
                                                     className="inline-block h-9 w-9 rounded-full"
                                                     src="https://avatars.dicebear.com/api/adventurer-neutral/izone.svg"
