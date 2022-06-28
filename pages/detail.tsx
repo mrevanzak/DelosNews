@@ -51,7 +51,7 @@ const Detail = () => {
             {article && (
                 <Container>
                     <div className="w-full mx-auto flex items-center flex-col text-gray-900">
-                        <div className="space-x-4 flex text-gray-500">
+                        <div className="space-x-4 flex items-center text-gray-500 text-xs sm:text-base">
                             <p>{article.published_date}</p>
                             <span>&bull;</span>
                             <p className="inline-flex items-center">
@@ -61,7 +61,7 @@ const Detail = () => {
                             <span>&bull;</span>
                             <p>{article.byline}</p>
                         </div>
-                        <h2 className="text-2xl mt-4 text-center">
+                        <h2 className="text-lg sm:text-2xl mt-4 text-center">
                             <Link href="/detail">
                                 <a>{article.title}</a>
                             </Link>
@@ -80,9 +80,11 @@ const Detail = () => {
                         />
                     </div>
                     <div className="md:w-8/12 w-full mx-auto leading-relaxed text-gray-900">
-                        <p className="text-xl mb-4">{article.abstract}</p>
+                        <p className="text-base sm:text-xl mb-4">
+                            {article.abstract}
+                        </p>
                     </div>
-                    <div className="flex justify-end">
+                    <div className="flex justify-end fixed bottom-8 right-8 sm:static">
                         <button
                             type="button"
                             className="inline-flex items-center p-3 border border-transparent rounded-full shadow-sm text-white bg-sky-500 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
