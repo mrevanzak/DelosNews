@@ -55,6 +55,9 @@ export type UserType = {
     name: string;
     owned: ApiResponseProps[];
     balance: number;
+    totalSpent: number;
+    gotJackpot?: boolean;
+    freeArticles?: number;
 };
 
 export type UserContextType = {
