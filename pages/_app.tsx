@@ -5,6 +5,23 @@ import { ApiResponseProps, UserType } from "@customTypes/type";
 import { ArticleContext, UserContext } from "contexts";
 
 function MyApp({ Component, pageProps }: AppProps) {
+    const username = [
+        "Silver Rain",
+        "Kim Kura",
+        "Hyem",
+        "Jigumina",
+        "Chaestival",
+        "Ssamu",
+        "Minju",
+        "Nabuki Yako",
+        "Hitomi",
+        "Glassy",
+        "Eugene",
+        "Vicky Jang",
+    ];
+    const randomUsername =
+        username[Math.floor(Math.random() * username.length)];
+
     const [article, setArticle] = useState<
         ApiResponseProps & { price: number }
     >();
@@ -15,23 +32,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     });
 
     useEffect(() => {
-        const username = [
-            "Silver Rain",
-            "Kim Kura",
-            "Hyem",
-            "Jigumina",
-            "Chaestival",
-            "Ssamu",
-            "Minju",
-            "Nabuki Yako",
-            "Hitomi",
-            "Glassy",
-            "Eugene",
-            "Vicky Jang",
-        ];
-        const randomUsername =
-            username[Math.floor(Math.random() * username.length)];
-
         const userStorage = localStorage.getItem("user");
         userStorage
             ? setUser(JSON.parse(userStorage))

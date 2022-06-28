@@ -50,11 +50,9 @@ const ArticleItem: FC<ArticleItemProps> = ({ data }) => {
                             <span>&bull;</span>
                             <p className="inline-flex items-center">
                                 <CurrencyEuroIcon className="h-5 w-5 inline pr-0.5" />
-                                {price === 50000
-                                    ? "50.000"
-                                    : price === 20000
-                                    ? "20.000"
-                                    : "free"}
+                                {price > 0
+                                    ? price.toLocaleString("id-ID")
+                                    : "Free"}
                             </p>
                         </div>
                     </div>
