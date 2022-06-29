@@ -1,4 +1,4 @@
-import { UserContext } from "contexts";
+import { UserContext } from "providers/context";
 import { observer } from "mobx-react";
 import Image from "next/image";
 import { useContext } from "react";

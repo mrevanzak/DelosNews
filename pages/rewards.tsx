@@ -5,7 +5,7 @@ import Head from "next/head"
 import React, { useEffect } from "react"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.min.css"
-import user from "store/user"
+import user from "providers/store/user"
 
 const Reward = () => {
     const namesList = ["⚡", "❤️", "🎶", "🎈", "✨", "🎁", "🎉", "💎", "💍", "📻", "🔒", "🎖️", "🍔", "🏆", "🍿", "🚗"]

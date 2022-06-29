@@ -2,10 +2,10 @@ import "../styles/globals.css"
 import type { AppProps } from "next/app"
 import { useEffect, useState } from "react"
 import { ApiResponseProps } from "@customTypes/type"
-import { ArticleContext, UserContext } from "contexts"
+import { ArticleContext, UserContext } from "providers/context"
 import { observer } from "mobx-react"
 import { comparer, reaction, toJS } from "mobx"
-import user from "store/user"
+import user from "providers/store/user"
 
 function MyApp({ Component, pageProps }: AppProps) {
     const [article, setArticle] = useState<ApiResponseProps & { price: number }>()

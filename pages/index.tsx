@@ -4,7 +4,7 @@ import Container from "@components/Container"
 import Layout from "@components/Layout"
 import ArticleList from "@components/ArticlesList"
 import Dropdown from "@components/Dropdown"
-import { OptionContext } from "contexts"
+import { OptionContext } from "providers/context"
 import { Option } from "@customTypes/type"
 import Search from "@components/Search"
 

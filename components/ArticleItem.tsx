@@ -5,7 +5,7 @@ import noImage from "../assets/noImage.svg";
 import moment from "moment";
 import { CurrencyEuroIcon } from "@heroicons/react/outline";
 import { ApiResponseProps, ArticleContextType } from "@customTypes/type";
-import { ArticleContext } from "contexts";
+import { ArticleContext } from "providers/context";
 
 type ArticleItemProps = {
     data: ApiResponseProps;
@@ -58,7 +58,6 @@ const ArticleItem: FC<ArticleItemProps> = ({ data }) => {
                     </div>
                 </a>
             </Link>
-            {/* <ArticleDetail category={data.type} date={data.published_date} title={data.title} shortDescription={data.abstract} /> */}
         </div>
     );
 };

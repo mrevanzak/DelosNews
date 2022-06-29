@@ -3,7 +3,7 @@ import Container from "components/Container"
 import Image from "next/image"
 import logo from "../assets/logo.png"
 import { useContext } from "react"
-import { UserContext } from "contexts"
+import { UserContext } from "providers/context"
 import { CurrencyEuroIcon } from "@heroicons/react/outline"
 import { observer } from "mobx-react"
 

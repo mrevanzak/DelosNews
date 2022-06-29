@@ -1,13 +1,13 @@
-import { UserContext } from "contexts"
+import { UserContext } from "providers/context"
 import { observer } from "mobx-react"
 import { useRouter } from "next/router"
 import { FC, useContext } from "react"
 import { toast } from "react-toastify"
 
 type RandomPickerControlsProps = {
-    isRunning: boolean
-    start: () => void
-    stop: () => void
+    isRunning: boolean;
+    start: () => void;
+    stop: () => void;
 }
 
 const RandomPickerControls: FC<RandomPickerControlsProps> = ({ isRunning, start, stop }) => {

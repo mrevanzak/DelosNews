@@ -3,7 +3,7 @@ import useArticles from "pages/api/articles";
 import Loading from "./Loading";
 import { FC, useContext } from "react";
 import { ApiResponseProps, OptionContextType } from "@customTypes/type";
-import { OptionContext } from "contexts";
+import { OptionContext } from "providers/context";
 
 type ArticleListProps = {
     search: string;

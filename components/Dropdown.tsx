@@ -2,7 +2,7 @@ import { Fragment, useContext, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { Option, OptionContextType } from "@customTypes/type";
-import { OptionContext } from "contexts";
+import { OptionContext } from "providers/context";
 
 const filterOptions = [
     {
