@@ -14,7 +14,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         () => user.user,
         () => {
             user.save()
-            console.log("user saved", user.account)
         },
     )
 
@@ -22,7 +21,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         () => user.account,
         () => {
             user.save()
-            console.log("account saved", user.account)
         },
     )
 
@@ -32,8 +30,6 @@ function MyApp({ Component, pageProps }: AppProps) {
             user.setAccount(JSON.parse(userStorage))
         }
     }, [user.user])
-
-    console.log("user", user.account)
 
     return (
         <UserContext.Provider value={user}>

@@ -1,13 +1,12 @@
-import { UserContextType } from "@customTypes/type"
 import { UserContext } from "contexts"
 import { useRouter } from "next/router"
 import { FC, useContext } from "react"
 import { toast } from "react-toastify"
 
 type RandomPickerControlsProps = {
-    isRunning: boolean
-    start: () => void
-    stop: () => void
+    isRunning: boolean;
+    start: () => void;
+    stop: () => void;
 }
 
 const RandomPickerControls: FC<RandomPickerControlsProps> = ({ isRunning, start, stop }) => {
@@ -27,6 +26,7 @@ const RandomPickerControls: FC<RandomPickerControlsProps> = ({ isRunning, start,
         }
         stop()
         if (randomReward) {
+            if (randomReward.prize === 0) return toast.info("Better luck next time")
             if (randomReward.prize) {
                 toast.success(`Congratulation you got a ${randomReward.prize} balance`)
                 randomReward.prize === 50000

@@ -1,7 +1,7 @@
 import { Fragment, useContext, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import { OptionContextType } from "@customTypes/type";
+import { Option, OptionContextType } from "@customTypes/type";
 import { OptionContext } from "contexts";
 
 const filterOptions = [
@@ -30,9 +30,9 @@ const Dropdown = () => {
     const { setOption } = useContext(OptionContext) as OptionContextType;
     const [selected, setSelected] = useState(filterOptions[0]);
 
-    const onChangeHandler = (item: any) => {
+    const onChangeHandler = (item: typeof filterOptions[0]) => {
         setSelected(item);
-        setOption(item.label);
+        setOption(item.label as Option);
     };
 
     return (

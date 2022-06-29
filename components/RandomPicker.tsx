@@ -1,4 +1,3 @@
-import { UserContextType } from "@customTypes/type"
 import { UserContext } from "contexts"
 import { FC, useContext, useState } from "react"
 import RandomPickerChoice from "./RandomPickerChoice"
@@ -7,8 +6,8 @@ import RandomPickerControls from "./RandomPickerControls"
 const RandomPicker: FC<{ items: string[] }> = ({ items }) => {
     const user = useContext(UserContext)!
     const [isRunning, setIsRunning] = useState(false)
-    const [currentChoice, setCurrentChoice] = useState<any>("")
-    const [_interval, _setInterval] = useState<any>(null)
+    const [currentChoice, setCurrentChoice] = useState<string>("")
+    const [_interval, _setInterval] = useState<NodeJS.Timeout | undefined>(undefined)
     const intervalDuration = 25
 
     const random = () => {
@@ -17,7 +16,7 @@ const RandomPicker: FC<{ items: string[] }> = ({ items }) => {
     }
 
     const setChoice = () => {
-        setCurrentChoice(random())
+        setCurrentChoice(random()!)
     }
 
     const stop = () => {

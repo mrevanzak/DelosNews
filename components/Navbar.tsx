@@ -26,7 +26,6 @@ const Navbar = () => {
 
     const onLoginPress = () => {
         user.setUser(randomUsername!, 100000)
-        console.log("logged in", user.account)
     }
     return (
         <nav className='py-10'>

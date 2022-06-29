@@ -11,7 +11,7 @@ type ArticleListProps = {
 
 const ArticleList: FC<ArticleListProps> = ({ search }) => {
     const { option } = useContext(OptionContext) as OptionContextType;
-    const { data, error } = useArticles(option);
+    const { data } = useArticles(option);
 
     return (
         <div className="flex -mx-4 flex-wrap mt-6">

@@ -59,8 +59,3 @@ export type UserType = {
     gotJackpot?: boolean;
     freeArticles?: number;
 };
-
-export type UserContextType = {
-    user: UserType;
-    setUser: (user: UserType) => void;
-};

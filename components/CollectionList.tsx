@@ -35,7 +35,7 @@ const CollectionList = () => {
                     </div>
                     <div className='mt-8'>
                         <h3 className='text-lg font-medium'>
-                            <a href={item.url} target='_blank' className='focus:outline-none'>
+                            <a href={item.url} target='_blank' rel='noreferrer' className='focus:outline-none'>
                                 <span className='absolute inset-0' aria-hidden='true' />
                                 <p className='text-gray-800'>{item.title}</p>
                             </a>

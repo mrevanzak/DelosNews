@@ -1,7 +1,7 @@
 import { FC } from "react"
 
 type RandomPickerChoiceProps = {
-    choice: string
+    choice: string;
 }
 
 const RandomPickerChoice: FC<RandomPickerChoiceProps> = ({ choice }) => {
