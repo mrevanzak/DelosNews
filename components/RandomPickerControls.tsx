@@ -41,9 +41,10 @@ const RandomPickerControls: FC<RandomPickerControlsProps> = ({ isRunning, start,
     }
     const onclickHandler = async () => {
         await action()
-        setTimeout(() => {
-            router.push("/")
-        }, 2500)
+        isRunning &&
+            setTimeout(() => {
+                router.push("/")
+            }, 2500)
     }
     return (
         <div className='flex flex-col items-center'>
