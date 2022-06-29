@@ -27,7 +27,6 @@ const CollectionList = () => {
                     <div>
                         <div className={"rounded-lg inline-flex p-3 ring-4 ring-white"}>
                             <Image
-                                property="true"
                                 src={item.media[0] ? item.media[0]["media-metadata"][2]!.url : noImage}
                                 width={210}
                                 height={140}
