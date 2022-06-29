@@ -5,9 +5,9 @@ import { FC, useContext } from "react"
 import { toast } from "react-toastify"
 
 type RandomPickerControlsProps = {
-    isRunning: boolean;
-    start: () => void;
-    stop: () => void;
+    isRunning: boolean
+    start: () => void
+    stop: () => void
 }
 
 const RandomPickerControls: FC<RandomPickerControlsProps> = ({ isRunning, start, stop }) => {
@@ -21,11 +21,14 @@ const RandomPickerControls: FC<RandomPickerControlsProps> = ({ isRunning, start,
     const randomReward = reward[Math.floor(Math.random() * reward.length)]
     const action = () => {
         if (!isRunning) {
-            if (!user.isHasLuckyDraw() && Math.floor(user.account.totalSpent / 50000) > 0)
-                user.setAccount({ ...user.account, luckyDraw: Math.floor(user.account.totalSpent / 50000) * 3, totalSpent: user.account.totalSpent - 50000 })
+            if (!user.isHasLuckyDraw() && user.account.totalSpent >= 50000)
+                user.setAccount({
+                    ...user.account,
+                    luckyDraw: Math.floor(user.account.totalSpent / 50000) * 3,
+                    totalSpent: user.account.totalSpent - 50000,
+                })
             if (!user.isHasLuckyDraw()) return toast.error("Buy more articles to get a lucky draw")
             user.setAccount({ ...user.account, luckyDraw: user.account.luckyDraw! - 1 })
-            console.log(user.account)
             return start()
         }
         stop()
