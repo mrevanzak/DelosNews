@@ -5,6 +5,7 @@ import logo from "../assets/logo.png"
 import { useContext } from "react"
 import { UserContext } from "contexts"
 import { CurrencyEuroIcon } from "@heroicons/react/outline"
+import { observer } from "mobx-react"
 
 const Navbar = () => {
     const user = useContext(UserContext)!
@@ -55,8 +56,7 @@ const Navbar = () => {
                                         {Math.floor(user.account.totalSpent / 50000) > 0 && (
                                             <Link href='/rewards'>
                                                 <a className='text-xs font-medium text-sky-500 group-hover:text-gray-900'>
-                                                    You have {Math.floor(user.account.totalSpent / 50000)} chance for
-                                                    lucky draw
+                                                    You got chances to spin lucky draw
                                                 </a>
                                             </Link>
                                         )}
@@ -92,4 +92,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default observer(Navbar)

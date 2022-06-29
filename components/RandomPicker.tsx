@@ -1,4 +1,5 @@
 import { UserContext } from "contexts"
+import { observer } from "mobx-react"
 import { FC, useContext, useState } from "react"
 import RandomPickerChoice from "./RandomPickerChoice"
 import RandomPickerControls from "./RandomPickerControls"
@@ -34,9 +35,13 @@ const RandomPicker: FC<{ items: string[] }> = ({ items }) => {
         <div className='flex flex-col items-center justify-center p-4 h-[75vh]'>
             <RandomPickerChoice choice={currentChoice} />
             <RandomPickerControls isRunning={isRunning} start={start} stop={stop} />
-            <p className="text-black">You have {Math.floor(user.account.totalSpent / 50000)} chance</p>
+            <p className='text-black'>
+                You have{" "}
+                {user.isHasLuckyDraw() ? user.account.luckyDraw : Math.floor(user.account.totalSpent / 50000) * 3}{" "}
+                chance
+            </p>
         </div>
     )
 }
 
-export default RandomPicker
+export default observer(RandomPicker)

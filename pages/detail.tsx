@@ -12,6 +12,7 @@ import { toast, ToastContainer } from "react-toastify"
 import noImage from "../assets/noImage.svg"
 import "react-toastify/dist/ReactToastify.min.css"
 import { useRouter } from "next/router"
+import { observer } from "mobx-react"
 
 const Detail = () => {
     const { article } = useContext(ArticleContext) as ArticleContextType
@@ -52,7 +53,7 @@ const Detail = () => {
     return (
         <Layout>
             <Head>
-                <title>Detail &mdash; Epictetus</title>
+                <title>Detail &mdash; DelosNews</title>
             </Head>
             {article && (
                 <Container>
@@ -110,4 +111,4 @@ const Detail = () => {
     )
 }
 
-export default Detail
+export default observer(Detail)

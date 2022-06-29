@@ -4,24 +4,18 @@ import { useEffect, useState } from "react"
 import { ApiResponseProps } from "@customTypes/type"
 import { ArticleContext, UserContext } from "contexts"
 import { observer } from "mobx-react"
-import { reaction } from "mobx"
+import { comparer, reaction, toJS } from "mobx"
 import user from "store/user"
 
 function MyApp({ Component, pageProps }: AppProps) {
     const [article, setArticle] = useState<ApiResponseProps & { price: number }>()
 
     reaction(
-        () => user.user,
+        () => toJS(user.account),
         () => {
             user.save()
         },
-    )
-
-    reaction(
-        () => user.account,
-        () => {
-            user.save()
-        },
+        { equals: comparer.structural },
     )
 
     useEffect(() => {
@@ -29,7 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         if (userStorage) {
             user.setAccount(JSON.parse(userStorage))
         }
-    }, [user.user])
+    }, [])
 
     return (
         <UserContext.Provider value={user}>

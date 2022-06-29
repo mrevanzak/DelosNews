@@ -1,5 +1,5 @@
 import { UserType } from "@customTypes/type"
-import { action, computed, makeAutoObservable, observable } from "mobx"
+import { action, computed, makeObservable, observable } from "mobx"
 
 class User {
     _user: UserType = {
@@ -7,9 +7,12 @@ class User {
         owned: [],
         balance: 0,
         totalSpent: 0,
+        gotJackpot: false,
+        freeArticles: 0,
+        luckyDraw: 0,
     }
     constructor() {
-        makeAutoObservable(this, {
+        makeObservable(this, {
             _user: observable,
             setAccount: action,
             setUser: action,
@@ -21,7 +24,7 @@ class User {
     setUser(name: string, balance: number) {
         this._user.name = name
         this._user.balance = balance
-    } 
+    }
 
     get user() {
         return {
@@ -30,13 +33,14 @@ class User {
         }
     }
 
-    setAccount({ name, owned, balance, totalSpent, gotJackpot, freeArticles }: UserType) {
+    setAccount({ name, owned, balance, totalSpent, gotJackpot, freeArticles, luckyDraw }: UserType) {
         this._user.name = name
         this._user.owned = owned
         this._user.balance = balance
         this._user.totalSpent = totalSpent
         this._user.gotJackpot = gotJackpot
         this._user.freeArticles = freeArticles
+        this._user.luckyDraw = luckyDraw
     }
 
     get account() {
@@ -48,14 +52,11 @@ class User {
     }
 
     isHasFreeArticles() {
-        return this.account.freeArticles !== undefined && this.account.freeArticles > 0
+        return this.account.freeArticles > 0
     }
 
-    syncUser() {
-        const userStorage = localStorage.getItem("user")
-        if (!userStorage) return localStorage.setItem("user", JSON.stringify(this.account))
-        const user = JSON.parse(userStorage)
-        return this.setAccount(user)
+    isHasLuckyDraw() {
+        return this.account.luckyDraw > 0
     }
 
     save() {

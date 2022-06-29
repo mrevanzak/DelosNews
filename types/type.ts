@@ -56,6 +56,7 @@ export type UserType = {
     owned: ApiResponseProps[];
     balance: number;
     totalSpent: number;
-    gotJackpot?: boolean;
-    freeArticles?: number;
+    gotJackpot: boolean;
+    freeArticles: number;
+    luckyDraw: number;
 };

@@ -1,4 +1,5 @@
 import { UserContext } from "contexts";
+import { observer } from "mobx-react";
 import Image from "next/image";
 import { useContext } from "react";
 import noImage from "../assets/noImage.svg";
@@ -61,4 +62,4 @@ const CollectionList = () => {
     )
 };
 
-export default CollectionList;
+export default observer(CollectionList);

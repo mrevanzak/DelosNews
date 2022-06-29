@@ -1,4 +1,5 @@
 import { UserContext } from "contexts"
+import { observer } from "mobx-react"
 import { useRouter } from "next/router"
 import { FC, useContext } from "react"
 import { toast } from "react-toastify"
@@ -20,8 +21,11 @@ const RandomPickerControls: FC<RandomPickerControlsProps> = ({ isRunning, start,
     const randomReward = reward[Math.floor(Math.random() * reward.length)]
     const action = () => {
         if (!isRunning) {
-            if (user.account.totalSpent < 50000) return toast.error("Buy more articles to get a lucky draw")
-            user.setAccount({ ...user.account, totalSpent: user.account.totalSpent - 50000 })
+            if (!user.isHasLuckyDraw() && Math.floor(user.account.totalSpent / 50000) > 0)
+                user.setAccount({ ...user.account, luckyDraw: Math.floor(user.account.totalSpent / 50000) * 3, totalSpent: user.account.totalSpent - 50000 })
+            if (!user.isHasLuckyDraw()) return toast.error("Buy more articles to get a lucky draw")
+            user.setAccount({ ...user.account, luckyDraw: user.account.luckyDraw! - 1 })
+            console.log(user.account)
             return start()
         }
         stop()
@@ -39,13 +43,19 @@ const RandomPickerControls: FC<RandomPickerControlsProps> = ({ isRunning, start,
             }
             if (randomReward.article) {
                 toast.success(`Congratulation you got free ${randomReward.article} article`)
-                user.setAccount({ ...user.account, freeArticles: randomReward.article })
+                user.isHasFreeArticles()
+                    ? user.setAccount({
+                          ...user.account,
+                          freeArticles: user.account.freeArticles! + randomReward.article,
+                      })
+                    : user.setAccount({ ...user.account, freeArticles: randomReward.article })
             }
         }
     }
     const onclickHandler = async () => {
         await action()
         isRunning &&
+            !user.isHasLuckyDraw() &&
             setTimeout(() => {
                 router.push("/")
             }, 2500)
@@ -64,4 +74,4 @@ const RandomPickerControls: FC<RandomPickerControlsProps> = ({ isRunning, start,
     )
 }
 
-export default RandomPickerControls
+export default observer(RandomPickerControls)

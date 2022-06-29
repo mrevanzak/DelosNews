@@ -6,7 +6,7 @@ import React from "react"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.min.css"
 
-const Reward = () => {
+const Reward = () => {    
     const namesList = [
         "⚡",
         "❤️",
@@ -29,7 +29,7 @@ const Reward = () => {
     return (
         <Layout>
             <Head>
-                <title>Rewards &mdash; Epictetus</title>
+                <title>Rewards &mdash; DelosNews</title>
             </Head>
             <Container>
                 <RandomPicker items={namesList} />
