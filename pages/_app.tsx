@@ -1,51 +1,42 @@
 import "../styles/globals.css"
 import type { AppProps } from "next/app"
 import { useEffect, useState } from "react"
-import { ApiResponseProps, UserType } from "@customTypes/type"
+import { ApiResponseProps } from "@customTypes/type"
 import { ArticleContext, UserContext } from "contexts"
+import { observer } from "mobx-react"
+import { reaction } from "mobx"
+import user from "store/user"
 
 function MyApp({ Component, pageProps }: AppProps) {
-    const username = [
-        "Silver Rain",
-        "Kim Kura",
-        "Hyem",
-        "Jigumina",
-        "Chaestival",
-        "Ssamu",
-        "Minju",
-        "Nabuki Yako",
-        "Hitomi",
-        "Glassy",
-        "Eugene",
-        "Vicky Jang",
-    ]
-    const randomUsername = username[Math.floor(Math.random() * username.length)]
-
     const [article, setArticle] = useState<ApiResponseProps & { price: number }>()
-    const [user, setUser] = useState<UserType>({
-        name: "",
-        owned: [],
-        balance: 0,
-        totalSpent: 0,
-    })
+
+    reaction(
+        () => user.user,
+        () => {
+            user.save()
+            console.log("user saved", user.account)
+        },
+    )
+
+    reaction(
+        () => user.account,
+        () => {
+            user.save()
+            console.log("account saved", user.account)
+        },
+    )
 
     useEffect(() => {
         const userStorage = localStorage.getItem("user")
-        userStorage
-            ? setUser(JSON.parse(userStorage))
-            : localStorage.setItem(
-                  "user",
-                  JSON.stringify({
-                      name: randomUsername,
-                      owned: [],
-                      balance: 100000,
-                      totalSpent: 0,
-                  }),
-              )
-    }, [])
+        if (userStorage) {
+            user.setAccount(JSON.parse(userStorage))
+        }
+    }, [user.user])
+
+    console.log("user", user.account)
 
     return (
-        <UserContext.Provider value={{ user, setUser }}>
+        <UserContext.Provider value={user}>
             <ArticleContext.Provider value={{ article, setArticle }}>
                 <Component {...pageProps} />
             </ArticleContext.Provider>
@@ -53,4 +44,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     )
 }
 
-export default MyApp
+export default observer(MyApp)

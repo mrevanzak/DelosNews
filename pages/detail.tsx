@@ -1,6 +1,6 @@
 import Container from "@components/Container"
 import Layout from "@components/Layout"
-import { ArticleContextType, UserContextType } from "@customTypes/type"
+import { ArticleContextType } from "@customTypes/type"
 import { CurrencyEuroIcon } from "@heroicons/react/outline"
 import { ShoppingCartIcon } from "@heroicons/react/solid"
 import { ArticleContext, UserContext } from "contexts"
@@ -15,26 +15,28 @@ import { useRouter } from "next/router"
 
 const Detail = () => {
     const { article } = useContext(ArticleContext) as ArticleContextType
-    const { user, setUser } = useContext(UserContext) as UserContextType
+    const user = useContext(UserContext)!
     const router = useRouter()
 
     const order = () => {
         if (article) {
-            if (user.name.length < 1) return toast.error("Please login first")
-            if (user.owned.some(item => item.id === article.id)) return toast.info("Article already in your collection")
-            if (user.freeArticles && user.freeArticles > 0) {
-                setUser({ ...user, owned: [...user.owned, article], freeArticles: user.freeArticles - 1 })
+            if (user.account.name.length < 1) return toast.error("Please login first")
+            if (user.isOwned(article.id)) return toast.info("Article already in your collection")
+            if (user.isHasFreeArticles() && article.price > 0) {
+                user.setAccount({
+                    ...user.account,
+                    owned: [...user.account.owned, article],
+                    freeArticles: user.account.freeArticles! - 1,
+                })
                 return toast.success("Article added to your collection without deduction of your balance")
             }
-            if (user.balance < article.price) return toast.error("You don't have enough balance")
-            
-            setUser({
-                ...user,
-                owned: [...user.owned, article],
-                balance: user.balance - article.price,
-                totalSpent: user.totalSpent + article.price,
+            if (user.account.balance < article.price) return toast.error("You don't have enough balance")
+            user.setAccount({
+                ...user.account,
+                owned: [...user.account.owned, article],
+                balance: user.account.balance - article.price,
+                totalSpent: user.account.totalSpent + article.price,
             })
-            localStorage.setItem("user", JSON.stringify(user))
             return toast.success("Article added to your collection")
         }
         return

@@ -4,14 +4,30 @@ import Image from "next/image"
 import logo from "../assets/logo.png"
 import { useContext } from "react"
 import { UserContext } from "contexts"
-import { UserContextType } from "@customTypes/type"
-import { useRouter } from "next/router"
 import { CurrencyEuroIcon } from "@heroicons/react/outline"
 
 const Navbar = () => {
-    const { user } = useContext(UserContext) as UserContextType
-    const router = useRouter()
+    const user = useContext(UserContext)!
+    const username = [
+        "Silver Rain",
+        "Kim Kura",
+        "Hyem",
+        "Jigumina",
+        "Chaestival",
+        "Ssamu",
+        "Minju",
+        "Nabuki Yako",
+        "Hitomi",
+        "Glassy",
+        "Eugene",
+        "Vicky Jang",
+    ]
+    const randomUsername = username[Math.floor(Math.random() * username.length)]
 
+    const onLoginPress = () => {
+        user.setUser(randomUsername!, 100000)
+        console.log("logged in", user.account)
+    }
     return (
         <nav className='py-10'>
             <Container>
@@ -24,24 +40,24 @@ const Navbar = () => {
                         </Link>
                     </div>
                     <div className='flex flex-col items-end'>
-                        {user.name ? (
+                        {user.account.name ? (
                             <div className='flex-shrink-0 group block'>
                                 <div className='flex items-center'>
                                     <div className='mr-3 flex flex-col items-end'>
                                         <Link href='/user'>
                                             <a className='text-sm font-medium text-gray-700 group-hover:text-gray-900'>
-                                                {user.name}
+                                                {user.account.name}
                                             </a>
                                         </Link>
-
                                         <div className='flex items-center text-xs font-medium text-gray-500 group-hover:text-gray-700'>
                                             <CurrencyEuroIcon className='h-5 w-5 inline pr-0.5' />
-                                            <p>{user.balance.toLocaleString("id-ID")}</p>
+                                            <p>{user.account.balance.toLocaleString("id-ID")}</p>
                                         </div>
-                                        {Math.floor(user.totalSpent / 50000) > 0 && (
+                                        {Math.floor(user.account.totalSpent / 50000) > 0 && (
                                             <Link href='/rewards'>
                                                 <a className='text-xs font-medium text-sky-500 group-hover:text-gray-900'>
-                                                    You have {Math.floor(user.totalSpent / 50000)} chance for lucky draw
+                                                    You have {Math.floor(user.account.totalSpent / 50000)} chance for
+                                                    lucky draw
                                                 </a>
                                             </Link>
                                         )}
@@ -65,7 +81,7 @@ const Navbar = () => {
                             <button
                                 type='button'
                                 className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-sky-500 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500'
-                                onClick={() => router.reload()}
+                                onClick={onLoginPress}
                             >
                                 Login
                             </button>

@@ -5,10 +5,9 @@ import RandomPickerChoice from "./RandomPickerChoice"
 import RandomPickerControls from "./RandomPickerControls"
 
 const RandomPicker: FC<{ items: string[] }> = ({ items }) => {
-    const { user } = useContext(UserContext) as UserContextType
+    const user = useContext(UserContext)!
     const [isRunning, setIsRunning] = useState(false)
     const [currentChoice, setCurrentChoice] = useState<any>("")
-
     const [_interval, _setInterval] = useState<any>(null)
     const intervalDuration = 25
 
@@ -22,7 +21,6 @@ const RandomPicker: FC<{ items: string[] }> = ({ items }) => {
     }
 
     const stop = () => {
-        console.log(_interval)
         clearInterval(_interval)
         setIsRunning(false)
     }
@@ -37,7 +35,7 @@ const RandomPicker: FC<{ items: string[] }> = ({ items }) => {
         <div className='flex flex-col items-center justify-center p-4 h-[75vh]'>
             <RandomPickerChoice choice={currentChoice} />
             <RandomPickerControls isRunning={isRunning} start={start} stop={stop} />
-            <p className="text-black">You have {Math.floor(user.totalSpent / 50000)} chance</p>
+            <p className="text-black">You have {Math.floor(user.account.totalSpent / 50000)} chance</p>
         </div>
     )
 }

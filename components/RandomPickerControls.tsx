@@ -12,17 +12,17 @@ type RandomPickerControlsProps = {
 
 const RandomPickerControls: FC<RandomPickerControlsProps> = ({ isRunning, start, stop }) => {
     const router = useRouter()
-    const { user, setUser } = useContext(UserContext) as UserContextType
+    const user = useContext(UserContext)!
     const reward = [{ prize: 20000 }, { prize: 0 }, { article: 1 }, { article: 2 }, { article: 3 }]
-    if (user && !user.gotJackpot) {
+    if (user && !user.account.gotJackpot) {
         reward.push({ prize: 50000 })
     }
 
     const randomReward = reward[Math.floor(Math.random() * reward.length)]
     const action = () => {
         if (!isRunning) {
-            if (user.totalSpent < 50000) return toast.error("Buy more articles to get a lucky draw")
-            setUser({ ...user, totalSpent: user.totalSpent - 50000 })
+            if (user.account.totalSpent < 50000) return toast.error("Buy more articles to get a lucky draw")
+            user.setAccount({ ...user.account, totalSpent: user.account.totalSpent - 50000 })
             return start()
         }
         stop()
@@ -30,12 +30,16 @@ const RandomPickerControls: FC<RandomPickerControlsProps> = ({ isRunning, start,
             if (randomReward.prize) {
                 toast.success(`Congratulation you got a ${randomReward.prize} balance`)
                 randomReward.prize === 50000
-                    ? setUser({ ...user, gotJackpot: true, balance: user.balance + randomReward.prize })
-                    : setUser({ ...user, balance: user.balance + randomReward.prize })
+                    ? user.setAccount({
+                          ...user.account,
+                          gotJackpot: true,
+                          balance: user.account.balance + randomReward.prize,
+                      })
+                    : user.setAccount({ ...user.account, balance: user.account.balance + randomReward.prize })
             }
             if (randomReward.article) {
                 toast.success(`Congratulation you got free ${randomReward.article} article`)
-                setUser({ ...user, freeArticles: randomReward.article })
+                user.setAccount({ ...user.account, freeArticles: randomReward.article })
             }
         }
     }
