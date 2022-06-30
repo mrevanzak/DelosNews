@@ -1,3 +1,4 @@
+import "react-toastify/dist/ReactToastify.min.css"
 import { FC, useContext } from "react"
 import { toast, ToastContainer } from "react-toastify"
 
