@@ -1,4 +1,5 @@
 import { FCC } from "types/react";
+
 import Navbar from "components/Navbar";
 
 const Layout: FCC = ({ children }) => {

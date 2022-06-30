@@ -1,11 +1,12 @@
-import { ArticleContextType } from "@customTypes/type"
-import { CurrencyEuroIcon } from "@heroicons/react/outline"
 import Image from "next/image"
 import Link from "next/link"
-import { useRouter } from "next/router"
-import { ArticleContext } from "providers/context"
+import { CurrencyEuroIcon } from "@heroicons/react/outline"
 import { useContext, useEffect } from "react"
-import noImage from "../assets/noImage.svg"
+import { useRouter } from "next/router"
+
+import noImage from "@assets/noImage.svg"
+import { ArticleContextType } from "@customTypes/type"
+import { ArticleContext } from "providers/context"
 
 const ArticleInfo = () => {
     const { article } = useContext(ArticleContext) as ArticleContextType

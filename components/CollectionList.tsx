@@ -1,8 +1,9 @@
-import { UserContext } from "providers/context";
-import { observer } from "mobx-react";
 import Image from "next/image";
+import { observer } from "mobx-react"
 import { useContext } from "react";
-import noImage from "../assets/noImage.svg";
+
+import noImage from "@assets/noImage.svg"
+import { UserContext } from "providers/context"
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");

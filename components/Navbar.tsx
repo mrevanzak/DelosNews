@@ -1,11 +1,12 @@
-import Link from "next/link"
-import Container from "components/Container"
 import Image from "next/image"
-import logo from "../assets/logo.png"
-import { useContext } from "react"
-import { UserContext } from "providers/context"
+import Link from "next/link"
 import { CurrencyEuroIcon } from "@heroicons/react/outline"
 import { observer } from "mobx-react"
+import { useContext } from "react"
+
+import Container from "components/Container"
+import logo from "@assets/logo.png"
+import { UserContext } from "providers/context"
 
 const Navbar = () => {
     const user = useContext(UserContext)!
@@ -53,7 +54,7 @@ const Navbar = () => {
                                             <CurrencyEuroIcon className='h-5 w-5 inline pr-0.5' />
                                             <p>{user.account.balance.toLocaleString("id-ID")}</p>
                                         </div>
-                                        {Math.floor(user.account.totalSpent / 50000) > 0 && (
+                                        {(user.isHasLuckyDraw() || Math.floor(user.account.totalSpent / 50000) > 0) && (
                                             <Link href='/rewards'>
                                                 <a className='text-xs font-medium text-sky-500 group-hover:text-gray-900'>
                                                     You got chances to spin lucky draw

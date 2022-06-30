@@ -1,7 +1,7 @@
 import { UserType } from "@customTypes/type"
 import { action, computed, makeObservable, observable } from "mobx"
 
-class User {
+export class User {
     _user: UserType = {
         name: "",
         owned: [],
@@ -64,4 +64,5 @@ class User {
     }
 }
 
-export default new User()
+const UserStorage = new User()
+export default UserStorage

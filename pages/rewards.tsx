@@ -1,10 +1,11 @@
-import Container from "@components/Container"
-import Layout from "@components/Layout"
-import RandomPicker from "@components/RandomPicker"
+import "react-toastify/dist/ReactToastify.min.css"
 import Head from "next/head"
 import React, { useEffect } from "react"
 import { ToastContainer } from "react-toastify"
-import "react-toastify/dist/ReactToastify.min.css"
+
+import Container from "@components/Container"
+import Layout from "@components/Layout"
+import RandomPicker from "@components/RandomPicker"
 import user from "providers/store/user"
 
 const Reward = () => {

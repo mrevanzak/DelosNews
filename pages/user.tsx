@@ -1,10 +1,11 @@
+import Head from "next/head"
+import { observer } from "mobx-react"
+import { useContext } from "react"
+
 import CollectionList from "@components/CollectionList"
 import Container from "@components/Container"
 import Layout from "@components/Layout"
 import { UserContext } from "providers/context"
-import { observer } from "mobx-react"
-import Head from "next/head"
-import { useContext } from "react"
 
 const User = () => {
     const user = useContext(UserContext)!

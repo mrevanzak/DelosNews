@@ -26,7 +26,16 @@
       ],
       "@customTypes/*": [
         "types/*"
-      ]
+      ],
+      "@assets/*": [
+        "assets/*"
+      ],
+      "@store/*": [
+        "providers/store/*"
+      ],
+      "@services/*": [
+        "services/*"
+      ],
     },
     "strict": true, /* Enable all strict type-checking options. */
     "noImplicitAny": true, /* Raise error on expressions and declarations with an implied 'any' type. */

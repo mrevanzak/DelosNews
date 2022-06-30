@@ -1,11 +1,11 @@
-import { ShoppingCartIcon } from "@heroicons/react/solid"
 import { FC } from "react"
+import { ShoppingCartIcon } from "@heroicons/react/solid"
 
 type BuyButtonProps = {
     onOrderClick: () => void;
 }
 
-const BuyButton: FC<BuyButtonProps> = ({onOrderClick}) => {
+const BuyButton: FC<BuyButtonProps> = ({ onOrderClick }) => {
     return (
         <div className='flex justify-end fixed bottom-8 right-8 sm:static'>
             <button

@@ -1,12 +1,13 @@
-import { FC, useState } from "react"
 import Head from "next/head"
-import Container from "@components/Container"
-import Layout from "@components/Layout"
+import { FC, useState } from "react"
+
 import ArticleList from "@components/ArticlesList"
+import Container from "@components/Container"
 import Dropdown from "@components/Dropdown"
+import Layout from "@components/Layout"
+import Search from "@components/Search"
 import { OptionContext } from "providers/context"
 import { Option } from "@customTypes/type"
-import Search from "@components/Search"
 
 const Home: FC = () => {
     const [option, setOption] = useState<Option>("emailed")

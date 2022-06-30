@@ -1,8 +1,9 @@
-import { UserContext } from "providers/context"
-import { observer } from "mobx-react"
 import { FC, useContext, useState } from "react"
+import { observer } from "mobx-react"
+
 import RandomPickerChoice from "./RandomPickerChoice"
 import RandomPickerControls from "./RandomPickerControls"
+import { UserContext } from "providers/context"
 
 const RandomPicker: FC<{ items: string[] }> = ({ items }) => {
     const user = useContext(UserContext)!
